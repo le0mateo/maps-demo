@@ -1,0 +1,74 @@
+<div class="map-container">
+  <!-- Cluster Details Panel -->
+  <div class="cluster-details" [class.active]="selectedClusterLocations.length > 0">
+    <div class="panel-header">
+      <h3>Địa điểm trong khu vực ({{selectedClusterLocations.length}})</h3>
+      <button class="close-btn" (click)="clearSelectedCluster()">×</button>
+    </div>
+    <div class="locations-list">
+      @for (location of selectedClusterLocations; track location.id) {
+        <div class="location-item"
+             [class]="'category-' + location.category"
+             (click)="zoomToLocation(location)">
+          <div class="location-icon">
+            <i [class]="getCategoryIcon(location.category)"></i>
+          </div>
+          <div class="location-info">
+            <h4>{{location.name}}</h4>
+            <p>{{location.description}}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+    <div id="map" class="map"></div>
+    <div class="location-list">
+      <div class="category-filter">
+        @for (cat of categories; track cat) {
+          <button (click)="filterByCategory(cat)"
+                  [class.active]="selectedCategory === cat">
+            {{getCategoryLabel(cat)}}
+          </button>
+        }
+      </div>
+      <div class="locations-scroll" #scrollContainer>
+        @for (location of filteredLocations; track location.id) {
+          <div class="location-item"
+               [class]="'category-' + location.category"
+               (click)="zoomToLocation(location)">
+            <div class="location-icon">
+              <i [class]="getCategoryIcon(location.category)"></i>
+            </div>
+            <div class="location-info">
+              <h3>{{location.name}}</h3>
+              <p>{{location.description}}</p>
+            </div>
+          </div>
+        }
+        @empty {
+          <div class="no-locations">
+            Không có địa điểm nào trong danh mục này
+          </div>
+        }
+      </div>
+    </div>
+
+     
+      <!-- Add layer control -->
+      <div class="layer-control">
+        <div class="layer-toggle">
+          <label>
+            <input type="checkbox" 
+                   [checked]="showHeatmap" 
+                   (change)="toggleHeatmap()"> Hiển thị Heatmap
+          </label>
+        </div>
+        <div class="layer-toggle">
+          <label>
+            <input type="checkbox" 
+                   [checked]="showMarkers" 
+                   (change)="toggleMarkers()"> Hiển thị Markers
+          </label>
+        </div>
+      </div>
+  </div>

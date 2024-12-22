@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Thêm styles vào styles.css
+.marker-cluster {
+    background-clip: padding-box;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cluster-icon {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cluster-small {
+    background-color: rgba(181, 226, 140, 0.9);
+    font-size: 12px;
+  }
+  
+  .cluster-medium {
+    background-color: rgba(241, 211, 87, 0.9);
+    font-size: 14px;
+  }
+  
+  .cluster-large {
+    background-color: rgba(253, 156, 115, 0.9);
+    font-size: 16px;
+  }
